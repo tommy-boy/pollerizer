@@ -9,22 +9,6 @@ import android.widget.Button;
 import android.widget.Toast;
 import android.widget.RelativeLayout;
 
-import android.app.Activity;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ImageView;
-import android.view.View.OnClickListener;
-
-
-
 public class MainActivity extends Activity {
 
     @Override
@@ -42,7 +26,7 @@ public class MainActivity extends Activity {
 
                 counter ++;
 
-                Toast.makeText(getApplicationContext(), "Clicked" + counter,
+                Toast.makeText(getApplicationContext(), "Clicked: " + counter + " times",
                         Toast.LENGTH_SHORT).show();
             }
         };

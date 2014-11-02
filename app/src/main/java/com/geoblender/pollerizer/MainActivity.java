@@ -9,6 +9,20 @@ import android.widget.Button;
 import android.widget.Toast;
 import android.widget.RelativeLayout;
 
+import android.app.Activity;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ImageView;
+import android.view.View.OnClickListener;
+
 
 
 public class MainActivity extends Activity {
@@ -22,9 +36,13 @@ public class MainActivity extends Activity {
         final RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
 
         View.OnClickListener listener = new View.OnClickListener() {
-            @Override
+
+            int counter = 0;
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Clicked",
+
+                counter ++;
+
+                Toast.makeText(getApplicationContext(), "Clicked" + counter,
                         Toast.LENGTH_SHORT).show();
             }
         };

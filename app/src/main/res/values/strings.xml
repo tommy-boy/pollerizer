@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Pollerizer</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world">Is it dark outside?</string>
     <string name="action_settings">Settings</string>
 
 </resources>

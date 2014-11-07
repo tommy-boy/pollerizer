@@ -25,12 +25,15 @@ import java.net.URL;
 public class MainActivity extends Activity {
 
     private static final String SERVICE_URL = "http://geoblender.com/android/android.php";
+    private static final String SERVICE_URL_Y = "http://geoblender.com/android/yes.php";
+    private static final String SERVICE_URL_N = "http://geoblender.com/android/no.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final Button showFactButton = (Button) findViewById(R.id.buttonYes);
+        final Button yesButton = (Button) findViewById(R.id.buttonYes);
+        final Button noButton = (Button) findViewById(R.id.buttonNo);
 
         final RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
 
@@ -48,7 +51,7 @@ public class MainActivity extends Activity {
             }
         };
 
-        showFactButton.setOnClickListener(listener);
+        yesButton.setOnClickListener(listener);
     }
 
 
@@ -71,12 +74,12 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    protected void retrieveAndAddCities() throws IOException {
+    protected void voteYes() throws IOException {
         HttpURLConnection conn = null;
         final StringBuilder json = new StringBuilder();
         try {
             // Connect to the web service
-            URL url = new URL(SERVICE_URL);
+            URL url = new URL(SERVICE_URL_Y);
             conn = (HttpURLConnection) url.openConnection();
             InputStreamReader in = new InputStreamReader(conn.getInputStream());
 
@@ -105,7 +108,7 @@ public class MainActivity extends Activity {
         new Thread(new Runnable() {
             public void run() {
                 try {
-                    retrieveAndAddCities();
+                    voteYes();
                 } catch (IOException e) {
                     //Log.e(LOG_TAG, "Cannot retrive cities", e);
                     return;

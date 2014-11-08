@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.Toast;
 import android.widget.RelativeLayout;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,6 +30,8 @@ public class MainActivity extends Activity {
     private static final String SERVICE_URL_Y = "http://geoblender.com/android/yes.php";
     private static final String SERVICE_URL_N = "http://geoblender.com/android/no.php";
 
+    private static final String LOG_TAG = "Pollerizer";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +46,7 @@ public class MainActivity extends Activity {
             int counter = 0;
             public void onClick(View view) {
 
-                setUpMap();
+                castVote();
 
                 counter ++;
 
@@ -102,15 +106,16 @@ public class MainActivity extends Activity {
         }
     } // connect to web
 
-    private void setUpMap() {
+    private void castVote() {
         // Retrieve the city data from the web service
         // In a worker thread since it's a network operation.
         new Thread(new Runnable() {
             public void run() {
                 try {
                     voteYes();
+                    Log.e(LOG_TAG, "Voted Yes");
                 } catch (IOException e) {
-                    //Log.e(LOG_TAG, "Cannot retrive cities", e);
+                    Log.e(LOG_TAG, "Cannot vote Yes", e);
                     return;
                 }
             }

@@ -42,14 +42,10 @@ public class MainActivity extends Activity {
         final RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
 
         View.OnClickListener listener = new View.OnClickListener() {
-
             int counter = 0;
             public void onClick(View view) {
-
                 castVote();
-
                 counter ++;
-
                 Toast.makeText(getApplicationContext(), "Clicked: " + counter + " times",
                         Toast.LENGTH_SHORT).show();
             }

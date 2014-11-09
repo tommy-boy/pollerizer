@@ -200,9 +200,9 @@ public class MainActivity extends Activity {
         // De-serialize the JSON string into an array of objects
         JSONArray jsonArray = new JSONArray(json);
         for (int i = 0; i < jsonArray.length(); i++) {
-            Log.e(LOG_TAG, "Looping");
 
             JSONObject jsonObj = jsonArray.getJSONObject(i);
+            Log.e(LOG_TAG, jsonObj.getString("yes"));
             /*map.addMarker(new MarkerOptions()
                             .title(jsonObj.getString("name"))
                             .snippet(jsonObj.getString("description"))

@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.RelativeLayout;
 
@@ -203,16 +204,13 @@ public class MainActivity extends Activity {
 
             JSONObject jsonObj = jsonArray.getJSONObject(i);
             Log.e(LOG_TAG, jsonObj.getString("yes"));
-            /*map.addMarker(new MarkerOptions()
-                            .title(jsonObj.getString("name"))
-                            .snippet(jsonObj.getString("description"))
-                            .position(new LatLng(
-                                    Double.parseDouble(jsonObj.getString("latitude")),
-                                    Double.parseDouble(jsonObj.getString("longitude"))
-                            ))
-                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.yellow_point))
 
-            );*/
+            TextView labelVotesYes = (TextView) findViewById(R.id.votesYes);
+            TextView labelVotesNo = (TextView) findViewById(R.id.votesNo);
+
+            labelVotesYes.setText(jsonObj.getString("yes"));
+            labelVotesNo.setText(jsonObj.getString("no"));
+
         } // loop
     }
 }

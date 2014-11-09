@@ -11,14 +11,6 @@ import android.widget.RelativeLayout;
 
 import android.util.Log;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.os.Bundle;
-
-import android.util.Log;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -26,7 +18,7 @@ import java.net.URL;
 
 public class MainActivity extends Activity {
 
-    private static final String SERVICE_URL = "http://geoblender.com/android/android.php";
+    private static String SERVICE_URL = "http://geoblender.com/android/android.php";
     private static final String SERVICE_URL_Y = "http://geoblender.com/android/yes.php";
     private static final String SERVICE_URL_N = "http://geoblender.com/android/no.php";
 
@@ -41,17 +33,30 @@ public class MainActivity extends Activity {
 
         final RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
 
-        View.OnClickListener listener = new View.OnClickListener() {
+        View.OnClickListener yes = new View.OnClickListener() {
             int counter = 0;
             public void onClick(View view) {
-                castVote();
+                String myVote = "Yes";
+                castVote(myVote);
                 counter ++;
                 Toast.makeText(getApplicationContext(), "Clicked: " + counter + " times",
                         Toast.LENGTH_SHORT).show();
             }
         };
 
-        yesButton.setOnClickListener(listener);
+        View.OnClickListener no = new View.OnClickListener() {
+            int counter = 0;
+            public void onClick(View view) {
+                String myVote = "No";
+                castVote(myVote);
+                counter ++;
+                Toast.makeText(getApplicationContext(), "Clicked: " + counter + " times",
+                        Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        yesButton.setOnClickListener(yes);
+        noButton.setOnClickListener(no);
     }
 
 
@@ -74,12 +79,21 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    protected void voteYes() throws IOException {
+    protected void vote(final String myVote) throws IOException {
         HttpURLConnection conn = null;
         final StringBuilder json = new StringBuilder();
         try {
             // Connect to the web service
-            URL url = new URL(SERVICE_URL_Y);
+
+            if(myVote == "Yes"){
+                SERVICE_URL = SERVICE_URL_Y;
+                Log.e(LOG_TAG, SERVICE_URL);
+            } else {
+                SERVICE_URL = SERVICE_URL_N;
+                Log.e(LOG_TAG, SERVICE_URL);
+            }
+
+            URL url = new URL(SERVICE_URL);
             conn = (HttpURLConnection) url.openConnection();
             InputStreamReader in = new InputStreamReader(conn.getInputStream());
 
@@ -93,7 +107,7 @@ public class MainActivity extends Activity {
         } catch (IOException e) {
             Toast.makeText(getApplicationContext(), "No connection",
                     Toast.LENGTH_SHORT).show();
-            //Log.e(LOG_TAG, "Error connecting to service", e);
+            Log.e(LOG_TAG, "Error connecting to service", e);
             throw new IOException("Error connecting to service", e);
         } finally {
             if (conn != null) {
@@ -102,16 +116,15 @@ public class MainActivity extends Activity {
         }
     } // connect to web
 
-    private void castVote() {
-        // Retrieve the city data from the web service
-        // In a worker thread since it's a network operation.
+    private void castVote(final String myVote) {
+        // Worker thread cuz it's a network operation.
         new Thread(new Runnable() {
             public void run() {
                 try {
-                    voteYes();
-                    Log.e(LOG_TAG, "Voted Yes");
+                    vote(myVote);
+                    Log.e(LOG_TAG, myVote);
                 } catch (IOException e) {
-                    Log.e(LOG_TAG, "Cannot vote Yes", e);
+                    Log.e(LOG_TAG, "Cannot vote", e);
                     return;
                 }
             }

@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
     private static final String SERVICE_URL_Y = "http://geoblender.com/android/yes.php";
     private static final String SERVICE_URL_N = "http://geoblender.com/android/no.php";
     // 1. Declare a service url:
-    private static final String SERVICE_URL_SURVEYS = "http://www.geoblender.com/a/surveys.json";
+    private static final String SERVICE_URL_SURVEYS = "http://www.geoblender.com/android/survey.php";
 
     private static final String LOG_TAG = "Pollerizer";
 
@@ -131,6 +131,7 @@ public class MainActivity extends Activity {
             public void run() {
                 try {
                     vote(myVote);
+                    getData();
                     Log.e(LOG_TAG, myVote);
                 } catch (IOException e) {
                     Log.e(LOG_TAG, "Cannot vote", e);

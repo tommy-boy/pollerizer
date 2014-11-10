@@ -14,17 +14,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
-        android:textSize="50sp"
+        android:textSize="40sp"
         android:textIsSelectable="false"
         android:singleLine="false"
         android:layout_alignParentEnd="true"
-        android:height="160sp"
+        android:height="130sp"
         android:textAlignment="center" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No"
+        android:text="Vote No"
         android:id="@+id/buttonNo"
         android:textSize="20sp"
         android:layout_alignParentBottom="true"
@@ -36,14 +36,12 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Yes"
+        android:text="Vote Yes"
         android:id="@+id/buttonYes"
         android:layout_toEndOf="@+id/textView"
         android:textSize="20sp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="89dp" />
+        android:layout_alignTop="@+id/buttonNo"
+        android:layout_alignStart="@+id/textView" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,9 +49,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Yes votes"
         android:id="@+id/votesYes"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignStart="@+id/buttonYes"/>
+        android:layout_below="@+id/textView"
+        android:layout_alignStart="@+id/votesNo" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -61,7 +58,25 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="No votes"
         android:id="@+id/votesNo"
-        android:layout_alignBottom="@+id/votesYes"
-        android:layout_alignParentEnd="true" />
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/buttonNo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Yes"
+        android:id="@+id/lblYes"
+        android:layout_below="@+id/textView"
+        android:layout_alignStart="@+id/buttonYes" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="No"
+        android:id="@+id/lblNo"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/lblYes" />
 
 </RelativeLayout>

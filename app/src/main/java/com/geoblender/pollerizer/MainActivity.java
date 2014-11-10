@@ -48,7 +48,7 @@ public class MainActivity extends Activity {
                 String myVote = "Yes";
                 castVote(myVote);
                 counter ++;
-                Toast.makeText(getApplicationContext(), "Clicked: " + counter + " times",
+                Toast.makeText(getApplicationContext(), "Yes vote #" + counter + " sent to server",
                         Toast.LENGTH_SHORT).show();
             }
         };
@@ -59,7 +59,7 @@ public class MainActivity extends Activity {
                 String myVote = "No";
                 castVote(myVote);
                 counter ++;
-                Toast.makeText(getApplicationContext(), "Clicked: " + counter + " times",
+                Toast.makeText(getApplicationContext(), "No vote #" + counter + " sent to server",
                         Toast.LENGTH_SHORT).show();
             }
         };

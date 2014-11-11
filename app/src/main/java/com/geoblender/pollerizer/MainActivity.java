@@ -204,7 +204,12 @@ public class MainActivity extends Activity {
         for (int i = 0; i < jsonArray.length(); i++) {
 
             JSONObject jsonObj = jsonArray.getJSONObject(i);
-            Log.e(LOG_TAG, jsonObj.getString("yes"));
+
+            double totalVotes = (int) jsonObj.getDouble("yes") + (int) jsonObj.getDouble("no");
+            double percentYes = (int) jsonObj.getDouble("yes") / totalVotes * 100;
+            percentYes = Math.round(percentYes*10.0)/10.0;
+
+            Log.e(LOG_TAG, "Stuff: " + percentYes);
 
             TextView labelVotesYes = (TextView) findViewById(R.id.votesYes);
             TextView labelVotesNo = (TextView) findViewById(R.id.votesNo);

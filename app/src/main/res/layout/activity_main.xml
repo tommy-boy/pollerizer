@@ -3,8 +3,8 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5mm"
-    android:columnCount="10"
+    android:paddingRight="5mm"
+    android:columnCount="4"
     android:rowCount="5"
     android:background="#000000"
     android:orientation="vertical"
@@ -15,8 +15,9 @@
     <TextView
         android:text="@string/hello_world"
         android:id="@+id/textView"
-        android:layout_marginBottom="10mm"
-        android:textSize="40sp"
+        android:layout_marginBottom="15mm"
+        android:layout_marginTop="10mm"
+        android:textSize="36sp"
         android:textIsSelectable="false"
         android:layout_column="1"
         android:layout_columnSpan="3"
@@ -34,7 +35,7 @@
         android:layout_column="1"
         android:layout_row="2"
         android:text="Yes"
-        android:textSize="44dip"
+        android:textSize="30dip"
         android:id="@+id/lblYes"/>
 
     <TextView
@@ -44,7 +45,7 @@
         android:layout_column="2"
         android:layout_row="2"
         android:text="#"
-        android:textSize="44dip"
+        android:textSize="30dip"
         android:id="@+id/votesYes"/>
 
     <TextView
@@ -54,7 +55,7 @@
         android:layout_column="3"
         android:layout_row="2"
         android:text="%"
-        android:textSize="44dip"
+        android:textSize="30dip"
         android:id="@+id/percentYes"/>
 
 
@@ -66,7 +67,7 @@
         android:layout_row="3"
         android:layout_rowSpan="1"
         android:text="No"
-        android:textSize="44dip"
+        android:textSize="30dip"
         android:id="@+id/lblNo"/>
 
     <TextView
@@ -75,7 +76,7 @@
         android:layout_column="2"
         android:layout_row="3"
         android:text="#"
-        android:textSize="44dip"
+        android:textSize="30dip"
         android:id="@+id/votesNo"/>
 
     <TextView
@@ -84,26 +85,32 @@
         android:layout_column="3"
         android:layout_row="3"
         android:text="%"
-        android:textSize="44dip"
+        android:textSize="30dip"
         android:id="@+id/percentNo"/>
 
 
     <Button
         android:id="@+id/buttonYes"
+        android:padding="1mm"
         android:layout_gravity="bottom"
-        android:layout_column="3"
+        android:layout_column="1"
         android:layout_row="4"
+        android:background="#33cc33"
+        android:textColor="#000000"
         android:text="Vote Yes" />
-
-
 
     <Button
         android:id="@+id/buttonNo"
+        android:padding="1mm"
         android:layout_gravity="bottom"
-        android:layout_column="1"
-        android:layout_columnSpan="1"
+        android:layout_column="3"
         android:layout_row="4"
+        android:background="#33cc33"
         android:text="Vote No" />
+
+
+
+
 
 
 

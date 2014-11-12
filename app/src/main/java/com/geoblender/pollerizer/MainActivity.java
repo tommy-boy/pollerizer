@@ -6,10 +6,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.RelativeLayout;
-
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -38,7 +37,7 @@ public class MainActivity extends Activity {
         final Button yesButton = (Button) findViewById(R.id.buttonYes);
         final Button noButton = (Button) findViewById(R.id.buttonNo);
 
-        final RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
+        final GridLayout gridLayout = (GridLayout) findViewById(R.id.mainLayout);
 
         getData();
 
@@ -207,15 +206,21 @@ public class MainActivity extends Activity {
 
             double totalVotes = (int) jsonObj.getDouble("yes") + (int) jsonObj.getDouble("no");
             double percentYes = (int) jsonObj.getDouble("yes") / totalVotes * 100;
+            double percentNo = (int) jsonObj.getDouble("no") / totalVotes * 100;
             percentYes = Math.round(percentYes*10.0)/10.0;
+            percentNo = Math.round(percentNo*10.0)/10.0;
 
-            Log.e(LOG_TAG, "Stuff: " + percentYes);
+            //Log.e(LOG_TAG, "Stuff: " + percentYes);
 
             TextView labelVotesYes = (TextView) findViewById(R.id.votesYes);
             TextView labelVotesNo = (TextView) findViewById(R.id.votesNo);
+            TextView labelPercentYes = (TextView) findViewById(R.id.percentYes);
+            TextView labelPercentNo = (TextView) findViewById(R.id.percentNo);
 
             labelVotesYes.setText(jsonObj.getString("yes"));
             labelVotesNo.setText(jsonObj.getString("no"));
+            labelPercentYes.setText(String.valueOf(percentYes));
+            labelPercentNo.setText(String.valueOf(percentNo));
 
         } // loop
     }

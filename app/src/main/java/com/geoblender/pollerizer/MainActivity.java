@@ -39,8 +39,9 @@ public class MainActivity extends Activity {
 
         final GridLayout gridLayout = (GridLayout) findViewById(R.id.mainLayout);
 
-        getData();
+        getData(); // getData for initial page load
 
+        // 1. Create a Yes vote and call castVote:
         View.OnClickListener yes = new View.OnClickListener() {
             int counter = 0;
             public void onClick(View view) {
@@ -52,6 +53,9 @@ public class MainActivity extends Activity {
             }
         };
 
+
+
+        // 1. Create a No vote and call castVote:
         View.OnClickListener no = new View.OnClickListener() {
             int counter = 0;
             public void onClick(View view) {
@@ -68,25 +72,27 @@ public class MainActivity extends Activity {
     } // onCreate
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+
+    // 2. Receive vote and call vote function:
+    private void castVote(final String myVote) {
+        // Worker thread cuz it's a network operation.
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    vote(myVote);
+                    getData(); // refresh display after voting
+                    Log.e(LOG_TAG, myVote);
+                } catch (IOException e) {
+                    Log.e(LOG_TAG, "Cannot vote", e);
+                    return;
+                }
+            }
+        }).start();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
+
+    // 3. Send vote to server and get data:
     protected void vote(final String myVote) throws IOException {
         HttpURLConnection conn = null;
         final StringBuilder json = new StringBuilder();
@@ -103,9 +109,10 @@ public class MainActivity extends Activity {
 
             URL url = new URL(SERVICE_URL);
             conn = (HttpURLConnection) url.openConnection();
-            InputStreamReader in = new InputStreamReader(conn.getInputStream());
+            InputStreamReader in = new InputStreamReader(conn.getInputStream()); // Sends vote
 
             // Read the JSON data into the StringBuilder
+            // Duplicated below
             int read;
             char[] buff = new char[1024];
             while ((read = in.read(buff)) != -1) {
@@ -124,23 +131,9 @@ public class MainActivity extends Activity {
         }
     } // connect to web
 
-    private void castVote(final String myVote) {
-        // Worker thread cuz it's a network operation.
-        new Thread(new Runnable() {
-            public void run() {
-                try {
-                    vote(myVote);
-                    getData();
-                    Log.e(LOG_TAG, myVote);
-                } catch (IOException e) {
-                    Log.e(LOG_TAG, "Cannot vote", e);
-                    return;
-                }
-            }
-        }).start();
-    }
 
-    // 2. Create function to call the function to retrieve JSON:
+
+    // 4. Create function to call retrieveData:
     private void getData() {
         // Retrieve the city data from the web service
         // In a worker thread since it's a network operation.
@@ -157,7 +150,9 @@ public class MainActivity extends Activity {
         }).start();
     }
 
-    // 3. Create function to retrieve JSON:
+
+
+    // 5. Create function to retrieve JSON and call processJSON:
     protected void retrieveData() throws IOException {
         HttpURLConnection conn = null;
         final StringBuilder json = new StringBuilder();
@@ -196,7 +191,9 @@ public class MainActivity extends Activity {
         });
     }
 
-    // 4. Create function to process JSON
+
+
+    // 6. Process JSON and display results:
     void processJson(String json) throws JSONException {
         // De-serialize the JSON string into an array of objects
         JSONArray jsonArray = new JSONArray(json);
@@ -223,5 +220,28 @@ public class MainActivity extends Activity {
             labelPercentNo.setText(String.valueOf(percentNo));
 
         } // loop
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

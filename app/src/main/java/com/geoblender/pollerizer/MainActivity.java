@@ -73,14 +73,14 @@ public class MainActivity extends Activity {
 
 
 
-    // 2. Receive vote and call vote function:
+    // 2. Receive vote and call vote() and getData():
     private void castVote(final String myVote) {
         // Worker thread cuz it's a network operation.
         new Thread(new Runnable() {
             public void run() {
                 try {
                     vote(myVote);
-                    getData(); // refresh display after voting
+                    getData(); // refresh data after voting
                     Log.e(LOG_TAG, myVote);
                 } catch (IOException e) {
                     Log.e(LOG_TAG, "Cannot vote", e);
@@ -92,7 +92,7 @@ public class MainActivity extends Activity {
 
 
 
-    // 3. Send vote to server and get data:
+    // 3. Send vote to server:
     protected void vote(final String myVote) throws IOException {
         HttpURLConnection conn = null;
         final StringBuilder json = new StringBuilder();
@@ -112,12 +112,11 @@ public class MainActivity extends Activity {
             InputStreamReader in = new InputStreamReader(conn.getInputStream()); // Sends vote
 
             // Read the JSON data into the StringBuilder
-            // Duplicated below
-            int read;
-            char[] buff = new char[1024];
-            while ((read = in.read(buff)) != -1) {
-                json.append(buff, 0, read);
-            }
+            // int read;
+            // char[] buff = new char[1024];
+            // while ((read = in.read(buff)) != -1) {
+            //    json.append(buff, 0, read);
+            // }
 
         } catch (IOException e) {
             Toast.makeText(getApplicationContext(), "No connection",

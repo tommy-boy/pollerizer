@@ -1,117 +1,146 @@
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingRight="5mm"
-    android:columnCount="4"
-    android:rowCount="5"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:background="#000000"
     android:orientation="vertical"
+    android:padding="40dp"
+    android:gravity="center"
     tools:context=".GridLayoutActivity" >
 
 
 
     <TextView
         android:text="@string/hello_world"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/textView"
-        android:layout_marginBottom="15mm"
-        android:layout_marginTop="10mm"
-        android:textSize="36sp"
+        android:layout_marginBottom="60dp"
+        android:textSize="40sp"
         android:textIsSelectable="false"
-        android:layout_column="1"
-        android:layout_columnSpan="3"
-        android:layout_gravity="top"
-        android:layout_row="1"
+        android:gravity="center"
         android:textColor="#ffffff"
-        android:textAlignment="center" />
-
-
-
-    <TextView
-        android:layout_gravity="left"
-        android:textColor="#ffffff"
-        android:layout_marginBottom="10mm"
-        android:layout_column="1"
-        android:layout_row="2"
-        android:text="Yes"
-        android:textSize="30dip"
-        android:id="@+id/lblYes"/>
-
-    <TextView
-        android:layout_gravity="center"
-        android:textColor="#ffffff"
-        android:layout_marginBottom="10mm"
-        android:layout_column="2"
-        android:layout_row="2"
-        android:text="#"
-        android:textSize="30dip"
-        android:id="@+id/votesYes"/>
-
-    <TextView
-        android:layout_gravity="right"
-        android:textColor="#ffffff"
-        android:layout_marginBottom="10mm"
-        android:layout_column="3"
-        android:layout_row="2"
-        android:text="%"
-        android:textSize="30dip"
-        android:id="@+id/percentYes"/>
-
-
-
-    <TextView
-        android:layout_gravity="center"
-        android:textColor="#ffffff"
-        android:layout_column="1"
-        android:layout_row="3"
-        android:layout_rowSpan="1"
-        android:text="No"
-        android:textSize="30dip"
-        android:id="@+id/lblNo"/>
-
-    <TextView
-        android:layout_gravity="center"
-        android:textColor="#ffffff"
-        android:layout_column="2"
-        android:layout_row="3"
-        android:text="#"
-        android:textSize="30dip"
-        android:id="@+id/votesNo"/>
-
-    <TextView
-        android:layout_gravity="right"
-        android:textColor="#ffffff"
-        android:layout_column="3"
-        android:layout_row="3"
-        android:text="%"
-        android:textSize="30dip"
-        android:id="@+id/percentNo"/>
-
-
-    <Button
-        android:id="@+id/buttonYes"
-        android:padding="1mm"
-        android:layout_gravity="bottom"
-        android:layout_column="1"
-        android:layout_row="4"
-        android:background="#33cc33"
-        android:textColor="#000000"
-        android:text="Vote Yes" />
-
-    <Button
-        android:id="@+id/buttonNo"
-        android:padding="1mm"
-        android:layout_gravity="bottom"
-        android:layout_column="3"
-        android:layout_row="4"
-        android:background="#33cc33"
-        android:text="Vote No" />
+        />
 
 
 
 
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:text="Yes"
+                android:gravity="left"
+                android:layout_weight="1"
+                android:textSize="30dip"
+                android:id="@+id/lblYes"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:text="#"
+                android:textSize="30dip"
+                android:id="@+id/votesYes"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:layout_marginBottom="30dp"
+                android:text="%"
+                android:textSize="30dip"
+                android:gravity="right"
+                android:layout_weight="1"
+                android:id="@+id/percentYes"/>
+
+    </LinearLayout>
 
 
-</GridLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+            <TextView
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:text="No"
+                android:textSize="30dip"
+                android:gravity="left"
+                android:layout_weight="1"
+                android:id="@+id/lblNo"/>
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:text="#"
+                android:textSize="30dip"
+                android:id="@+id/votesNo"/>
+
+            <TextView
+                android:layout_gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:gravity="right"
+                android:layout_weight="1"
+                android:text="%"
+                android:textSize="30dip"
+                android:id="@+id/percentNo"/>
+
+        </LinearLayout>
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="60dp">
+
+
+            <Button
+                android:id="@+id/buttonYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:background="#33cc33"
+                android:layout_marginRight="20dp"
+                android:textColor="#000000"
+                android:text="Vote Yes" />
+
+            <Button
+                android:id="@+id/buttonNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:background="#33cc33"
+                android:text="Vote No" />
+
+        </LinearLayout>
+
+
+
+
+
+
+
+</LinearLayout>

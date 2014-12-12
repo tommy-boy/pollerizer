@@ -1,12 +1,14 @@
 package com.geoblender.pollerizer;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Log;
@@ -37,7 +39,47 @@ public class MainActivity extends Activity {
         final Button yesButton = (Button) findViewById(R.id.buttonYes);
         final Button noButton = (Button) findViewById(R.id.buttonNo);
 
-        final GridLayout gridLayout = (GridLayout) findViewById(R.id.mainLayout);
+        final LinearLayout linearLayout = (LinearLayout) findViewById(R.id.mainLayout);
+
+
+
+
+        // Font path
+        String fontBold = "fonts/FuturaTodayScreenBold.ttf";
+        String fontLight = "fonts/FuturaTodayScreenLight.ttf";
+
+        // text view labels
+        TextView txtQuestion = (TextView) findViewById(R.id.textView);
+        TextView txtYes = (TextView) findViewById(R.id.lblYes);
+        TextView txtNo = (TextView) findViewById(R.id.lblNo);
+        TextView txtVotesYes = (TextView) findViewById(R.id.votesYes);
+        TextView txtVotesNo = (TextView) findViewById(R.id.votesNo);
+        TextView txtPercentYes = (TextView) findViewById(R.id.percentYes);
+        TextView txtPercentNo = (TextView) findViewById(R.id.percentNo);
+        TextView txtButtonYes = (TextView) findViewById(R.id.buttonYes);
+        TextView txtButtonNo = (TextView) findViewById(R.id.buttonNo);
+
+        // Loading Font Face
+        Typeface tfb = Typeface.createFromAsset(getAssets(), fontBold);
+        Typeface tfl = Typeface.createFromAsset(getAssets(), fontLight);
+
+        // Applying font
+        txtQuestion.setTypeface(tfb);
+        txtYes.setTypeface(tfb);
+        txtNo.setTypeface(tfb);
+        txtVotesYes.setTypeface(tfl);
+        txtVotesNo.setTypeface(tfl);
+        txtPercentYes.setTypeface(tfl);
+        txtPercentNo.setTypeface(tfl);
+        txtButtonYes.setTypeface(tfb);
+        txtButtonNo.setTypeface(tfb);
+
+
+
+
+
+
+
 
         getData(); // getData for initial page load
 
